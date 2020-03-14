@@ -1,0 +1,1 @@
+dpkg-query -W -f='${Installed-Size;10}\t${Package}\t${Section}\n' | sort -k1,1n | less
