@@ -1,0 +1,99 @@
+find /folder -name "*needle*"
+Search for needle files and dirs under the folder directory and subdirectories
+
+du -sk * | sort -n | less
+List all files and folders in current directory,  with sum of size for folders and ordered by size
+
+rm -r $(find /folder -name "*needle*")
+Delete any file or folder matching needle pattern under the folder directory and subdirectories
+
+shutdown -r now
+Reboot the machine immediately
+
+shutdown -h now
+Shutdown the machine immediately
+
+/etc/rc.local
+File with applications launched at startup (add a row like "/path/prog &")
+
+/etc/init.d/skeleton
+Template file for process configuration. Generated script must be executable ("chmod +x /etc/init.d/my_proc") and symlinked in /etc/rc#.d
+
+ntfslabel -f /dev/sdX1 NewLabel
+Set new disk label for NTFS partition
+
+mkdir /mnt/dest
+mount /dev/sd#1 /mnt/dest
+grub-install --force --no-floppy --boot-directory=/mnt/dest/boot /dev/sd#
+Install GRUB on /dev/sd# disk with files in /dev/sd#1/boot partition. File /dev/sd#/boot/grub/grub.cfg must be created
+
+grub> set pager=1
+grub> ls
+grub> ls (hd0,1)/
+grub> set root=(hd0,1)
+grub> linux /boot/vmlinu... root=/dev/sda1
+grub> initrd /boot/initr...
+grub> boot
+Boot with grub2 in emergency
+
+update-rc.d -f service_name remove
+Remove service_name service from startup
+
+ls /etc/rc*.d | less
+Lists all services
+
+dmesg | less
+List boot procede log
+
+free -m
+Show RAM and SWAP usage status
+
+mkdir /media/cdrom
+mount /dev/sr0 /media/cdrom
+apt-cdrom add -m -d=/media/sr0
+Add external disk as repository for apt/dpkg
+
+dpkg --configure -a
+apt-get install -f
+Reconfigure and fixes not correctly installed packages
+
+tar -xvf archive.tar
+Extracts tar archive
+
+tar -xjvf archive.tar.bz
+Extracts tar.bz archive
+
+tar -xzvf archive.tar.gz
+Extracts tar.gz archive
+
+mount -o loop -t squashfs file.sqfs /mnt
+Mount file.sqfs squashfs file as disk
+
+ln -sf filepath symlinkpath
+Create with overwrite a symbolic link
+
+#GZIP WAY#
+mkdir initrd && cd initrd
+gzip -dc /path/initrd.img | cpio -I
+find . | cpio -H newc -o | gzip -9 > /path/initrd.new.img
+#XZ WAY#
+mkdir initrd && cd initrd
+xz -dc /path/initrd.img | cpio -I
+find . -print | cpio -o -H newc 2>/dev/null | xz -f --extreme --check=crc32
+Rebuild initrd file as initrd.new.img
+
+systemctl status network.service
+Check the status of network daemon
+
+systemctl enable network.service
+Enables network daemon (disable is the opposite command)
+
+systemctl stop NetworkManager.service
+Stop Network Manager daemon (start is the opposite command)
+
+
+Restore mouse:
+CTRL+ALT+F2
+modprobe -r psmouse
+modprobe psmouse
+CTRL+ALT+F7
